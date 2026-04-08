@@ -14,7 +14,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`z/${id}`);
+        const res = await axios.get(`https://dummyjson.com/products/${id}`);
         setProduct(res.data);
       } catch (err) {
         setError(err.message);
@@ -25,8 +25,18 @@ const ProductDetails = () => {
     fetchProduct();
   }, [id]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading product...</div>;
-  if (error || !product) return <div className="min-h-screen flex items-center justify-center text-red-500">Product not found</div>;
+  if (loading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Loading product...
+      </div>
+    );
+  if (error || !product)
+    return (
+      <div className="min-h-screen flex items-center justify-center text-red-500">
+        Product not found
+      </div>
+    );
 
   const handleAddToCart = () => {
     const productToAdd = {
@@ -42,8 +52,8 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen py-12 px-4">
-      <Link 
-        to="/products" 
+      <Link
+        to="/products"
         className="inline-block mb-8 text-indigo-600 hover:text-indigo-800 font-medium"
       >
         ← Back to Products
@@ -51,10 +61,10 @@ const ProductDetails = () => {
       <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
         <div className="md:flex">
           <div className="md:w-1/2 p-8">
-            <img 
+            <img
               className="w-full h-96 object-contain"
-              src={product.images[0] || product.thumbnail} 
-              alt={product.title} 
+              src={product.images[0] || product.thumbnail}
+              alt={product.title}
             />
           </div>
           <div className="md:w-1/2 p-8">
@@ -68,10 +78,21 @@ const ProductDetails = () => {
               {product.description}
             </p>
             <div className="space-y-4 mb-8">
-              <p><span className="font-semibold">Brand:</span> {product.brand}</p>
-              <p><span className="font-semibold">Category:</span> {product.category}</p>
-              <p><span className="font-semibold">Stock:</span> {product.stock} available</p>
-              <p><span className="font-semibold">Rating:</span> {product.rating}/5</p>
+              <p>
+                <span className="font-semibold">Brand:</span> {product.brand}
+              </p>
+              <p>
+                <span className="font-semibold">Category:</span>{" "}
+                {product.category}
+              </p>
+              <p>
+                <span className="font-semibold">Stock:</span> {product.stock}{" "}
+                available
+              </p>
+              <p>
+                <span className="font-semibold">Rating:</span> {product.rating}
+                /5
+              </p>
             </div>
             <button
               onClick={handleAddToCart}
