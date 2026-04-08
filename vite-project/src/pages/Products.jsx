@@ -55,7 +55,7 @@ const Products = () => {
         </div>
       </div>
       {filteredProducts.length > 0 ? (
-        <div className="xs:grid xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="ss:grid ss:grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredProducts.map((product) => (
             <div className="flex flex-col" key={product.id}>
               <Link to={`/product/${product.id}`}>
